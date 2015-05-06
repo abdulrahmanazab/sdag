@@ -83,8 +83,13 @@ For each job, four values are displayed:
 Example2
 --------
 Similar to example1, but having the C job exiting with error (replacing ``jobC.sbatch`` with ``jobC_err.sbatch``). This will cause job D to be cancelled from the queue once job C fails. The workflow description file is ``dag_err.sdag``
+
 Prerequisites
 --------------
 * Python 2.7+
 * [sbatch](https://computing.llnl.gov/linux/slurm/sbatch.html)
 * Add ``sdag`` to ``PATH``
+
+Support and Bug Reports
+-------------------------------
+Report an issue on the [issues](https://github.com/abdulrahmanazab/sdag/issues) section or send an email to azab@usit.uio.no

@@ -79,3 +79,9 @@ For each job, four values are displayed:
 * <b>Job ID</b>: the real job indentifier after submitting the job to SLURM. It can be used to check the status of the job.
 * <b>Job parents</b>: a comma separated list of jobs on which the job is dependent.
 * <b>Job children</b>: a comma separated list of jobs which are dependent on this job.
+
+Prerequisites
+--------------
+* Python 2.7+
+* [sbatch](https://computing.llnl.gov/linux/slurm/sbatch.html)
+* Add ``sdag`` to ``PATH``

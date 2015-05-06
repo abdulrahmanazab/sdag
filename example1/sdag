@@ -1,0 +1,2 @@
+#!/bin/bash
+python sdag.py $1 

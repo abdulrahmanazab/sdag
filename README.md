@@ -58,8 +58,12 @@ Each job is calling a python script ``test.py``, which takes the following argum
 * A comma separated list of input files.
 * An output file name.
 * An integer indicating the runtime in seconds.
-* * A job name.
-An example, when running:
+* A job name.
+An example, having an input file ``input.txt`` with the following contents:
+```
+This is a test text input file...
+```
+Then running:
 ```
 python test.py input.txt outA.txt 30 A
 ```

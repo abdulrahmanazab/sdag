@@ -35,6 +35,8 @@ Error in line [XX]: Job YY Cannot be a parent for job ZZ. Job ZZ is an ancestor 
 ```
 Example1
 --------
+This example is prepared to run on the [Abel Cluster](http://www.uio.no/english/services/it/research/hpc/abel/) at the [University of Oslo](www.uio.no).
+
 To submit a workflow with four jobs (A, B, C, and D) with the following structure:
 ```  
            B
@@ -52,7 +54,23 @@ JOB D jobD.sbatch
 PARENT A CHILD B C
 PARENT B C CHILD D
 ```
-Tp submit the workflow, type:
+Each job is calling a python script ``test.py``, which takes the following arguments:
+* A comma separated list of input files.
+* An output file name.
+* An integer indicating the runtime in seconds.
+* * A job name.
+An example, when running:
+```
+python test.py input.txt outA.txt 30 A
+```
+The output will be:
+```
+Job[A] Run on machine: compute-10-16.local      Slept for 30 seconds
+---------------FILE input.txt STARTED HERE---------------------
+This is a test text input file...
+---------------FILE input.txt ENDED HERE---------------------
+```
+To submit the workflow, type:
 ```
 sdag dagtest.sdag
 ```

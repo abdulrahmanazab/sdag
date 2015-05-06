@@ -33,7 +33,7 @@ PARENT <parent_jobs> CHILD <children_jobs>
 ```
 Error in line [XX]: Job YY Cannot be a parent for job ZZ. Job ZZ is an ancestor of job YY
 ```
-Example1
+Example 1
 --------
 This example is prepared to run on the [Abel Cluster](http://www.uio.no/english/services/it/research/hpc/abel/) at the [University of Oslo](www.uio.no).
 
@@ -98,7 +98,7 @@ For each job, four values are displayed:
 * <b>Job parents</b>: a comma separated list of jobs on which the job is dependent.
 * <b>Job children</b>: a comma separated list of jobs which are dependent on this job.
 
-Example2
+Example 2
 --------
 Similar to example1, but having the C job exiting with error (replacing ``jobC.sbatch`` with ``jobC_err.sbatch``). This will cause job D to be cancelled from the queue once job C fails. The workflow description file is ``dag_err.sdag``
 

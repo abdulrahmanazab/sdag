@@ -59,6 +59,7 @@ Each job is calling a python script ``test.py``, which takes the following argum
 * An output file name.
 * An integer indicating the runtime in seconds.
 * A job name.
+
 An example, having an input file ``input.txt`` with the following contents:
 ```
 This is a test text input file...
@@ -67,7 +68,7 @@ Then running:
 ```
 python test.py input.txt outA.txt 30 A
 ```
-The output will be:
+The output ``outA.txt`` will contain the following:
 ```
 Job[A] Run on machine: compute-10-16.local      Slept for 30 seconds
 ---------------FILE input.txt STARTED HERE---------------------

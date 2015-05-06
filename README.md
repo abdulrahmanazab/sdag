@@ -33,7 +33,7 @@ PARENT <parent_jobs> CHILD <children_jobs>
 ```
 Error in line [XX]: Job YY Cannot be a parent for job ZZ. Job ZZ is an ancestor of job YY
 ```
-Example
+Example1
 --------
 To submit a workflow with four jobs (A, B, C, and D) with the following structure:
 ```  
@@ -43,7 +43,7 @@ start--> A   D -->end
           \ /
            C
 ```
-Create four SLURM submission scripts, for the four jobs as: ``jobA.sbatch``, ``jobB.sbatch``, ``jobC.sbatch``, and ``jobD.sbatch``. Then create the workflow description file, ``dagtest.sdag`` with the following contents:
+Four jobs scripts are included: ``jobA.sbatch``, ``jobB.sbatch``, ``jobC.sbatch``, and ``jobD.sbatch``. The workflow description file is ``dag.sdag`` with the following contents:
 ```
 JOB A jobA.sbatch
 JOB B jobB.sbatch
@@ -52,7 +52,7 @@ JOB D jobD.sbatch
 PARENT A CHILD B C
 PARENT B C CHILD D
 ```
-Finally, submit your workflow by:
+Tp submit the workflow, type:
 ```
 sdag dagtest.sdag
 ```
@@ -80,6 +80,9 @@ For each job, four values are displayed:
 * <b>Job parents</b>: a comma separated list of jobs on which the job is dependent.
 * <b>Job children</b>: a comma separated list of jobs which are dependent on this job.
 
+Example2
+--------
+Similar to example1, but having the C job exiting with error (replacing ``jobC.sbatch`` with ``jobC_err.sbatch``). This will cause job D to be cancelled from the queue once job C fails. The workflow description file is ``dag_err.sdag``
 Prerequisites
 --------------
 * Python 2.7+

@@ -50,7 +50,7 @@ Parents: C,B
 Children:
 ```
 For each job, four values are displayed:
-* Job name: given in the workflow description.
+* <b>Job name</b>: given in the workflow description.
 * Job ID: the real job indentifier after submitting the job to SLURM. It can be used to check the status of the job.
 * Job parents: a comma separated list of jobs on which the job is dependent, i.e. the job won't start before these jobs end with exit code 0.
 * Job children: a comma separated list of jobs which are dependent on this job.

@@ -145,7 +145,7 @@ class SLURM_DAGMan(object):
         
 ######################################################################
 def main(argv):
-     if len(argv) != 1:
+    if len(argv) != 1:
         print 'Missing argument: DAG description file'
         sys.exit()
     arg = argv[0]

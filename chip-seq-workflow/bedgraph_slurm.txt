@@ -1,0 +1,28 @@
+#!/bin/bash
+# Job name:
+#SBATCH --job-name=bedgraph_test
+# Project:
+#SBATCH --account=nrr
+# Wall clock limit:
+#SBATCH --time=99:00:00
+#SBATCH --ntasks-per-node=16
+#SBATCH --mem-per-cpu=2000M
+#SBATCH --output=bedgraph_slurm.out
+## Set up job environment
+source /cluster/bin/jobsetup
+module purge
+module load bedtools/2.17.0
+set -o errexit
+
+INPUT_FILE=$TASK_ID.chr19_sorted.bam
+OUTPUT_FILE=$TASK_ID.chr19.bedGraph
+
+##cp /usit/abel/u1/azab/chipseq-workflow/slurm/elixirRNASEQtestdata/1.chr19.fastq $SCRATCH
+cp /usit/abel/u1/azab/chipseq-workflow/slurm/elixirRNASEQtestdata/$INPUT_FILE $SCRATCH
+cp /usit/abel/u1/azab/chipseq-workflow/hg19.chrom.sizes.txt $SCRATCH
+
+##chkfile 1.chr19.sam
+cleanup "cp $SCRATCH/$OUTPUT_FILE /usit/abel/u1/azab/chipseq-workflow/slurm/elixirRNASEQtestdata/$OUTPUT_FILE"
+
+cd $SCRATCH
+genomeCoverageBed -ibam $INPUT_FILE -bg -g hg19.chrom.sizes.txt > $OUTPUT_FILE

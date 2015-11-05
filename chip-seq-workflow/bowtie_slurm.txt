@@ -1,0 +1,28 @@
+#!/bin/bash
+# Job name:
+#SBATCH --job-name=bowtie_test_{$TASK_ID}
+# Project:
+#SBATCH --account=nrr
+# Wall clock limit:
+#SBATCH --time=99:00:00
+#SBATCH --ntasks-per-node=16
+#SBATCH --mem-per-cpu=2000M
+#SBATCH --output=bowtie_slurm_.out
+## Set up job environment
+source /cluster/bin/jobsetup
+module purge
+module load bowtie/1.0.0
+set -o errexit
+
+INPUT_FILE=$TASK_ID.chr19.fastq
+OUTPUT_FILE=$TASK_ID.chr19.sam
+
+##cp /usit/abel/u1/azab/chipseq-workflow/slurm/elixirRNASEQtestdata/1.chr19.fastq $SCRATCH
+cp /usit/abel/u1/azab/chipseq-workflow/slurm/elixirRNASEQtestdata/$INPUT_FILE $SCRATCH
+
+##chkfile 1.chr19.sam
+cleanup "cp $SCRATCH/$OUTPUT_FILE /usit/abel/u1/azab/chipseq-workflow/slurm/elixirRNASEQtestdata/$OUTPUT_FILE"
+
+cd $SCRATCH
+bowtie -p 15 -S -v 2 -m 1 /usit/abel/u1/azab/chipseq-workflow/hg19/hg19 $INPUT_FILE > $OUTPUT_FILE
+

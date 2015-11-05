@@ -1,0 +1,7 @@
+JOB A bowtie_slurm_array.txt
+JOB B bam_slurm_array.txt
+JOB C bam_sort_slurm_array.txt
+JOB D bedgraph_slurm_array.txt
+PARENT A CHILD B
+PARENT B CHILD C
+PARENT C CHILD D

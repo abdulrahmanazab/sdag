@@ -4,7 +4,7 @@
 #SBATCH --job-name=j1
 #
 # Project:
-#SBATCH --account=staff
+#SBATCH --account=uio
 #
 # Wall clock limit:
 #SBATCH --time=00:01:00

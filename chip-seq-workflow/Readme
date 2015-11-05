@@ -1,0 +1,7 @@
+This workflow is configured to run on the Abel cluster at the University of Oslo. You need to change the file pathes to mach your allocation.
+
+Download the reference genome hg19 index files for bowtie from:
+get ftp://ftp.cbcb.umd.edu/pub/data/bowtie_indexes/hg19.ebwt.zip
+
+Download Input data files from:
+http://invitro.hpc.uio.no/corefacilitydata/elixirRNASEQtestdata.zip

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Job name:
-#SBATCH --job-name=j1
+#SBATCH --job-name=jC
 #
 # Project:
 #SBATCH --account=uio

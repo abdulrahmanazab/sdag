@@ -4,7 +4,7 @@
 #SBATCH --job-name=jB
 #
 # Project:
-#SBATCH --account=uio
+#SBATCH --account=ec12
 #
 # Wall clock limit:
 #SBATCH --time=00:01:00
@@ -21,7 +21,7 @@ cp outA.txt $SCRATCH
 
 
 ## Make sure the results are copied back to the submit directory (see Work Directory below):
-chkfile outB.txt
+savefile outB.txt
 
 ## Do some work:
 cd $SCRATCH

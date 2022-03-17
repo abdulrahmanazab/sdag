@@ -35,7 +35,7 @@ Error in line [XX]: Job YY Cannot be a parent for job ZZ. Job ZZ is an ancestor 
 ```
 Example 1
 --------
-This example is prepared to run on the [Abel Cluster](http://www.uio.no/english/services/it/research/hpc/abel/) at the [University of Oslo](www.uio.no).
+This example is prepared to run on the [Fox Cluster](https://www.uio.no/english/services/it/research/platforms/edu-research/help/hpc/docs/fox/index.md) at the [University of Oslo](www.uio.no).
 
 To submit a workflow with four jobs (A, B, C, and D) with the following structure:
 ```  
@@ -45,7 +45,7 @@ start--> A   D -->end
           \ /
            C
 ```
-Four jobs scripts are included: ``jobA.sbatch``, ``jobB.sbatch``, ``jobC.sbatch``, and ``jobD.sbatch``. The workflow description file is ``dag.sdag`` with the following contents:
+Four jobs scripts are included: ``jobA.sbatch``, ``jobB.sbatch``, ``jobC.sbatch``, and ``jobD.sbatch``. The workflow description file is ``example1.sdag`` with the following contents:
 ```
 JOB A jobA.sbatch
 JOB B jobB.sbatch

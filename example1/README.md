@@ -45,7 +45,7 @@ This is a test text input file...
 ```
 module load Python/2.7.15-GCCcore-8.2.0
 cd sdag/example1
-python ../sdag example1.sdag
+python ../sdag.py example1.sdag
 ```
 **You will get an output like the following:**
 ```

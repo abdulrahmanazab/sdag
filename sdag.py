@@ -82,7 +82,7 @@ class SLURM_DAGMan(object):
             parentIDs = []
             for parent in parents:
                 if parent['ID'] is None:
-                    parent['ID'] = self._submit(parent['name'])
+                    parent['ID'] = self._submit(parent['name']).decode('utf-8')
                 parentIDs.append(parent['ID'])
             dependencies += ':'.join(parentIDs)
             commandList.append(dependencies)
@@ -94,12 +94,11 @@ class SLURM_DAGMan(object):
         out, err = p.communicate()
         
         #out = subprocess.check_output(' '.join(commandList), stderr=subprocess.STDOUT)
-        #print out
         
-        if out.strip()=='':
+        if out.strip()==b'':
             self._Error('#','#','Error submitting job '+jobName+'\n'+str(err))
         else:
-            job['ID'] = out.strip('\n').split()[-1]
+            job['ID'] = out.strip(b'\n').split()[-1]
             #print 'submitted:\n' + ' '.join(commandList)
             #print out
             return job['ID']
@@ -113,7 +112,7 @@ class SLURM_DAGMan(object):
     def _Error(self,lineNo,errorNo, message = ''):
         if lineNo == '#':
             msg = message
-            print >> sys.stderr, msg
+            print(msg, file=sys.stderr)
             os._exit(0)
         elif errorNo == 0:
             msg = 'Invalid syntax'
@@ -126,12 +125,17 @@ class SLURM_DAGMan(object):
         elif errorNo == 10:
             msg = message
             
-        print >> sys.stderr, 'Error in line ['+str(lineNo)+']: '+ msg
+        print('Error in line ['+str(lineNo)+']: '+ msg, file=sys.stderr)
         os._exit(0)
         
     def _getJobString(self,job):
         string = ''
-        string+='Job '+job['name']+'\t'+'ID: '+str(job['ID'])+'\n'
+        if isinstance(job['ID'], bytes):
+            string+='Job '+job['name']+'\t'+'ID: '+str(job['ID'], "utf-8")+'\n'
+        elif isinstance(job['ID'], str):
+            string+='Job '+job['name']+'\t'+'ID: '+job['ID']+'\n'
+        else:
+            os._exit(0)
         string+='Parents: '+','.join(list(job['parents']))+'\n'
         string+='Children: '+','.join(list(job['children']))+2*'\n'
         return string

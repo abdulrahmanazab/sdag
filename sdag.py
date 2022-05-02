@@ -146,21 +146,21 @@ class SLURM_DAGMan(object):
 ######################################################################
 def main(argv):
     if len(argv) != 1:
-        print 'Missing argument: DAG description file'
+        print('Missing argument: DAG description file')
         sys.exit()
     arg = argv[0]
     if arg in ['-h','--help']:
-        print 'A simple DAG manager for SLURM.'
+        print('A simple DAG manager for SLURM.')
         sys.exit()
     else:
         dagFile = arg
         if not os.path.isfile(dagFile):
-            print 'Error: You must enter a valid DAG description file'
+            print('Error: You must enter a valid DAG description file')
             sys.exit(1)
         dagman = SLURM_DAGMan(dagFile)
         dagman.parse()
         dagman.run()
-        print dagman
+        print(dagman)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
